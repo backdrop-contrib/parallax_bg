@@ -1,0 +1,5 @@
+name = Parallax Background
+description = Create a Parallax Background effect on any tagged element.
+core = 7.x
+
+configure = admin/config/user-interface/parallax_bg
