@@ -18,6 +18,8 @@ function parallax_bg_init() {
   ),
   'setting');
   drupal_add_js($module_path . '/parallax_bg.js');
+  drupal_add_js($module_path . '/js/jquery.scrollTo.js');
+  drupal_add_js($module_path . '/js/jquery.parallax.js');
 }
 
 /**
