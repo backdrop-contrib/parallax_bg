@@ -12,14 +12,16 @@
 function parallax_bg_init() {
   $module_path = drupal_get_path('module', 'parallax_bg');
   $settings = variable_get('parallax_bg_settings');
-  $js_vars = drupal_json_encode($settings['triggers_fieldset']);
-  drupal_add_js(array(
-    'parallax_bg' => $settings,
-  ),
-  'setting');
-  drupal_add_js($module_path . '/parallax_bg.js');
-  drupal_add_js($module_path . '/js/jquery.scrollTo.js');
-  drupal_add_js($module_path . '/js/jquery.parallax.js');
+  if (isset($settings['triggers_fieldset'])) {
+    $js_vars = drupal_json_encode($settings['triggers_fieldset']);
+    drupal_add_js(array(
+      'parallax_bg' => $settings,
+    ),
+    'setting');
+    drupal_add_js($module_path . '/parallax_bg.js');
+    drupal_add_js($module_path . '/js/jquery.scrollTo.js');
+    drupal_add_js($module_path . '/js/jquery.parallax.js');
+  }
 }
 
 /**
@@ -67,7 +69,8 @@ function parallax_bg_admin($form, &$form_state) {
     '#description' => t('Elements where Parallax Effect will be added'),
   );
   $i = 1;
-  foreach ($settings['triggers_fieldset'] as $trigger) {
+  $triggers = isset($settings['triggers_fieldset']) ? $settings['triggers_fieldset'] : array();
+  foreach ($triggers as $trigger) {
     $options['triggers_fieldset']["trigger$i"] = array(
       '#type' => 'fieldset',
       '#title' => isset($trigger["element"]) ? $trigger["element"] : t('New element'),
