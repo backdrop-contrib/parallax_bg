@@ -52,11 +52,7 @@ function parallax_bg_admin($form, &$form_state) {
   $form_state['triggers'] = $num_elements;
 
   $options['helper'] = array(
-    '#markup' => t('<h3>.parallax(xPosition, speedFactor, outerHeight) options:</h3>
-<p>xPosition - Horizontal position of the element</p>
-<p>inertia (speed) - speed to move relative to vertical scroll.</p>
-<p>Example: 0.1 is one tenth the speed of scrolling, 2 is twice the speed of scrolling</p>
-<p>outerHeight (true/false) - Whether or not jQuery should use outerHeight option to determine when a section is in the viewport. NOT USED</p>'),
+    '#markup' => t('Parallax Background activates a script that simulates the parallax effect using a different scroll speed on the background.'),
   );
   $options['triggers_fieldset'] = array(
     '#tree' => TRUE,
@@ -119,12 +115,13 @@ function parallax_bg_admin($form, &$form_state) {
     '#type' => 'textfield',
     '#default_value' => NULL,
     '#title' => "Valid jQuery selector",
+    '#description' => "A valid jQuery selector of the element of the DOM that holds the background. For example <strong>#top-content</strong>, <strong>body.one-page #super-banner</strong>.",
     '#required' => FALSE,
   );
   $options['triggers_fieldset']["trigger$i"]["position"] = array(
     '#type' => 'select',
     '#title' => "Position",
-    '#default_value' => '50%',
+    '#description' => "Horizontal position of the element",
     '#options' => array(
       '0' => t('Left'),
       '50%' => t('Middle'),
@@ -134,6 +131,7 @@ function parallax_bg_admin($form, &$form_state) {
   $options['triggers_fieldset']["trigger$i"]["speed"] = array(
     '#type' => 'select',
     '#title' => "Relative speed",
+    '#description' => "speed to move relative to vertical scroll. Example: 0.1 is one tenth the speed of scrolling, 2 is twice the speed of scrolling",
     '#default_value' => '0.1',
     '#options' => array('0.1' => 0.1, '0.2' => 0.2, '0.3' => 0.3, '0.4' => 0.4, '0.5' => 0.5, '0.6' => 0.6, '0.7' => 0.7, '0.8' => 0.8, '0.9' => 0.9, '1' => 1, '1.25' => 1.25, '1.5' => 1.5, '1.75' => 1.75, '2' => 2, '2.5' => 2.5, '3' => 3),
   );
