@@ -6,9 +6,9 @@
 */
 
 (function ($) {
-  Drupal.behaviors.parallax_bg = {
+  Backdrop.behaviors.parallax_bg = {
     attach: function (context, settings) {
-      var triggers = Drupal.settings.parallax_bg.triggers_fieldset;
+      var triggers = Backdrop.settings.parallax_bg.triggers_fieldset;
       //.parallax(xPosition, speedFactor, outerHeight) options:
       //xPosition - Horizontal position of the element
       //inertia - speed to move relative to vertical scroll. 

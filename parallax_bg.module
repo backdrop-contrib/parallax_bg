@@ -6,21 +6,32 @@
 */
 
 /**
+ * Implements hook_config_info().
+ */
+function parallax_bg_config_info() {
+  $prefixes['parallax_bg.settings'] = array(
+    'label' => t('parallax_bg settings'),
+    'group' => t('parallax_bg'),
+  );
+  return $prefixes;
+} 
+
+/**
  * Implements hook_init().
  */
 
 function parallax_bg_init() {
-  $module_path = drupal_get_path('module', 'parallax_bg');
-  $settings = variable_get('parallax_bg_settings');
+  $module_path = backdrop_get_path('module', 'parallax_bg');
+  $settings = config_get('parallax_bg.settings', 'parallax_bg_settings');
   if (isset($settings['triggers_fieldset'])) {
-    $js_vars = drupal_json_encode($settings['triggers_fieldset']);
-    drupal_add_js(array(
+    $js_vars = backdrop_json_encode($settings['triggers_fieldset']);
+    backdrop_add_js(array(
       'parallax_bg' => $settings,
     ),
     'setting');
-    drupal_add_js($module_path . '/parallax_bg.js');
-    drupal_add_js($module_path . '/js/jquery.scrollTo.js');
-    drupal_add_js($module_path . '/js/jquery.parallax.js');
+    backdrop_add_js($module_path . '/js/parallax_bg.js');
+    backdrop_add_js($module_path . '/js/jquery.scrollTo.js');
+    backdrop_add_js($module_path . '/js/jquery.parallax.js');
   }
 }
 
@@ -32,7 +43,7 @@ function parallax_bg_menu() {
   $items['admin/config/user-interface/parallax_bg'] = array(
     'title' => 'Parallax Backgound',
     'description' => 'Add a Parallax Background effect to any tagged element',
-    'page callback' => 'drupal_get_form',
+    'page callback' => 'backdrop_get_form',
     'page arguments' => array('parallax_bg_admin'),
     'access arguments' => array('administer site configuration'),
   );
@@ -47,7 +58,7 @@ function parallax_bg_admin($form, &$form_state) {
   // admin/* , node/add etc if user has overlay access.
   // Since the form builder is called after every AJAX request, we rebuild
   // the form based on $form_state.
-  $settings = variable_get('parallax_bg_settings');
+  $settings = config_get('parallax_bg.settings', 'parallax_bg_settings');
   $num_elements = isset($settings['triggers_fieldset']) ? count($settings['triggers_fieldset']) + 1 : 1;
   $form_state['triggers'] = $num_elements;
 
@@ -165,14 +176,14 @@ function parallax_bg_delete_submit($form, &$form_state) {
  */
 function parallax_bg_admin_validate($form, &$form_state) {
   if ($form_state['clicked_button']['#value'] == "Delete element") {
-    $settings = variable_get('parallax_bg_settings');
+    $settings = config_get('parallax_bg.settings', 'parallax_bg_settings');
     $child = $form_state['clicked_button']['#parents'][2];
     unset($settings['triggers_fieldset'][$child]);
-    variable_set('parallax_bg_settings', $settings);
+    config_set('parallax_bg.settings', 'parallax_bg_settings', $settings);
     $form_state['rebuild'] = TRUE;
     $form_state['flag'] = 1;
-    drupal_set_message(t('The element have been deleted.'));
-    drupal_goto('admin/config/user-interface/parallax_bg');
+    backdrop_set_message(t('The element have been deleted.'));
+    backdrop_goto('admin/config/user-interface/parallax_bg');
   }
 }
 
@@ -189,8 +200,8 @@ function parallax_bg_admin_form_submit($form, &$form_state) {
     if (is_array($value) && isset($form_state['values']['array_filter'])) {
       $value = array_keys(array_filter($value));
     }
-    variable_set($key, $value);
+    config_set('parallax_bg.settings', $key, $value);
   }
 
-  drupal_set_message(t('The configuration options have been saved.'));
+  backdrop_set_message(t('The configuration options have been saved.'));
 }

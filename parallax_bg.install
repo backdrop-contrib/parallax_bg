@@ -1,16 +1,18 @@
 <?php
 
 /**
- * @file bootstrap_library.install
- * Installation and update functions for the Bootstrap Library
+ * @file parallax_bg.install
+ * Installation and update functions for the parallax_bg
  * Module
  */
 
-/**
- * Implementation of hook_uninstall().
- * Only clears our variables, so a fresh installation can repopulate them.
- */
-function parallax_bg_uninstall() {
-  // Settings.
-  variable_del('parallax_bg_settings');
+
+function parallax_bg_update_1000() {
+  $config = config('parallax_bg.settings');
+  
+  $config->set('parallax_bg_settings', update_variable_get('parallax_bg_settings'));
+  $config->save();
+
+  // Delete variables.
+  update_variable_del('parallax_bg_settings');
 }
