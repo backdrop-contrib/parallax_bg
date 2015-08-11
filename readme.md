@@ -19,7 +19,7 @@ CONTENTS OF THIS FILE
 INTRODUCTION
 ------------
 
-This a simple module that allows to set a vertical parallax effect on the background of any element on the DOM.
+This a simple module that allows you to set a vertical parallax effect on the background of any element on the DOM.
 
 You may have seen this technique in the "single page" websites that are often step based marketing pages for an event, company services or a new product.
 
@@ -58,7 +58,12 @@ Big thanks to Ian Lunn for this functionality.
 REQUIREMENTS
 ------------
 
-none
+A "parallax scrolling" looking website often has to use these four modules together:
+
+- parallax_bg
+- scrollreveal
+- void_menu
+- back_to_top
 
 INSTALLATION
 ------------
