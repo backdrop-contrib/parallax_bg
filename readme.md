@@ -1,6 +1,12 @@
 PARALLAX BACKGROUND
 ===================
 
+This a simple module that allows you to set a vertical parallax effect on the background of any element on the DOM.
+
+You may have seen this technique in the "single page" websites that are often step based marketing pages for an event, company services or a new product.
+
+<http://en.wikipedia.org/wiki/Parallax>
+
 CONTENTS OF THIS FILE
 ---------------------
 
@@ -15,15 +21,6 @@ CONTENTS OF THIS FILE
  - License
  - Credits
  - Maintainers
-
-INTRODUCTION
-------------
-
-This a simple module that allows you to set a vertical parallax effect on the background of any element on the DOM.
-
-You may have seen this technique in the "single page" websites that are often step based marketing pages for an event, company services or a new product.
-
-<http://en.wikipedia.org/wiki/Parallax>
 
 TESTED
 -----
