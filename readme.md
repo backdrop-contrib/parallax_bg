@@ -1,7 +1,7 @@
 PARALLAX BACKGROUND
 ===================
 
-This a simple module that allows you to set a vertical parallax effect on the background of any element on the DOM.
+This is a simple module that allows you to set a vertical parallax effect on the background of any element on the DOM.
 
 You may have seen this technique in the "single page" websites that are often step based marketing pages for an event, company services or a new product.
 
@@ -10,25 +10,25 @@ You may have seen this technique in the "single page" websites that are often st
 CONTENTS OF THIS FILE
 ---------------------
 
- - Introduction
  - Tested
  - Known Issues
  - Special Thanks
  - Requirements
  - Installation
  - Coming From Drupal?
+ - Permissions
  - Usage
  - License
  - Credits
  - Maintainers
 
 TESTED
------
+------
 
 This module has been manually tested successfully creating several working JQuery parallax scrolling items in Backdrop.
 
 KNOWN ISSUES
----------------------
+------------
 
 This module works as is by just installing it.
 
@@ -74,7 +74,7 @@ COMING FROM DRUPAL?
 Nothing substantially different.
 
 PERMISSIONS
-------------
+-----------
 
 @todo
 
@@ -84,7 +84,15 @@ USAGE
 
 Go to admin page in /admin/config/user-interface/parallax_bg
 
-Define the element you want to apply the Parallax effect using any valid jQuery selector. The selector should point to the element that holds the background, for example: #top-content, body.one-page #super-banner
+Define the element you want to apply the parallax effect using any valid jQuery selector. The selector should point to the element that holds the background, for example: #top-content, body.one-page #super-banner
+
+The background may be defined in the css of your theme, per example:
+
+    body {
+      height: 100%;
+      background-image: url("background.jpg");
+      background-attachment: fixed;
+    }
 
 Additionally you need to define the inertia (relative speed) of the background and its horizontal position.
 
