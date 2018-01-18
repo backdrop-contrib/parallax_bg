@@ -14,7 +14,7 @@ function parallax_bg_config_info() {
     'group' => t('parallax_bg'),
   );
   return $prefixes;
-} 
+}
 
 /**
  * Implements hook_init().
@@ -41,7 +41,7 @@ function parallax_bg_init() {
 function parallax_bg_menu() {
   // Admin settings.
   $items['admin/config/user-interface/parallax_bg'] = array(
-    'title' => 'Parallax Backgound',
+    'title' => 'Parallax background',
     'description' => 'Add a Parallax Background effect to any tagged element',
     'page callback' => 'backdrop_get_form',
     'page arguments' => array('parallax_bg_admin'),
@@ -54,7 +54,7 @@ function parallax_bg_menu() {
  * Callback function for admin setting.
  */
 function parallax_bg_admin($form, &$form_state) {
-  // This module will not work if used in overlay paths such as 
+  // This module will not work if used in overlay paths such as
   // admin/* , node/add etc if user has overlay access.
   // Since the form builder is called after every AJAX request, we rebuild
   // the form based on $form_state.
@@ -108,7 +108,7 @@ function parallax_bg_admin($form, &$form_state) {
       '#options' => array('0.1' => 0.1, '0.2' => 0.2, '0.3' => 0.3, '0.4' => 0.4, '0.5' => 0.5, '0.6' => 0.6, '0.7' => 0.7, '0.8' => 0.8, '0.9' => 0.9, '1' => 1, '1.25' => 1.25, '1.5' => 1.5, '1.75' => 1.75, '2' => 2, '2.5' => 2.5, '3' => 3),
     );
     $options['triggers_fieldset']["trigger$i"]['delete'] = array(
-      '#type' => 'button', 
+      '#type' => 'button',
       '#value' => t('Delete element'),
       '#name' => 'delete-' . $i,
       '#submit' => array('parallax_bg_delete_submit'),
